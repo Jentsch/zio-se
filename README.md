@@ -29,6 +29,15 @@ object Retry extends Retry(ActualZio)
     * Very similar usage
 3. Easy to use
 
+## Performance
+
+The first Benchmarks shows a minor performance impact of ~ 5 % performance lost using the facade.
+
+| Benchmark                    |  Score                      |
+|------------------------------|-----------------------------|
+| IOMapBenchmark.zioFacadeMap  |  34903.797 ± 4079.546 ops/s |
+| IOMapBenchmark.zioMap        |  36561.435 ± 2545.700 ops/s |
+
 ## Build
 
 This is a normal sbt project, you can compile code with `sbt compile` and run it
