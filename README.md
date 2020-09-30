@@ -4,7 +4,7 @@ A prototype to make ZIO even more testable.
 
 ## How to use
 
-Instead of importing the static Zio paths, we need to use a paramter.
+Instead of importing the static Zio paths, we need to use a parameter.
 
 ```scala
 class MyModule(zio: ZIOFacade) {
@@ -15,7 +15,7 @@ class MyModule(zio: ZIOFacade) {
 }
 ```
 
-To instanziate the module use:
+To instantiate the module use:
 
 ```scala
 object Retry extends Retry(ActualZio)
@@ -31,7 +31,7 @@ object Retry extends Retry(ActualZio)
 
 ## Performance
 
-The first Benchmarks shows a minor performance impact of ~ 5 % performance lost using the facade.
+The first benchmark shows a minor performance impact of ~ 5 % performance lost using the facade, well within the error margin.
 
 | Benchmark                    |  Score                      |
 |------------------------------|-----------------------------|
@@ -40,11 +40,9 @@ The first Benchmarks shows a minor performance impact of ~ 5 % performance lost 
 
 ## Build
 
-This is a normal sbt project, you can compile code with `sbt compile` and run it
-with `sbt run`, `sbt console` will start a Dotty REPL.
+This is a normal sbt project, you can compile code with `sbt compile` and test it
+with `sbt test`.
 
-For more information on the sbt-dotty plugin, see the
-[dotty-example-project](https://github.com/lampepfl/dotty-example-project/blob/master/README.md).
 
 ## Previous attempts
 
