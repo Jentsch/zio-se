@@ -1,5 +1,8 @@
 package zio.se
 
+/**
+ * An incomplete facade of the zio package.
+ */
 trait ZIOFacade { self =>
 
 

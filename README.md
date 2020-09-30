@@ -27,6 +27,7 @@ object Retry extends Retry(ActualZio)
 2. Minimal deviation from normal ZIO
     * Near to zero impact on performance
     * Very similar usage
+    * Support JVM, JS and native
 3. Easy to use
 
 ## Performance

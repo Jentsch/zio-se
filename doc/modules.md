@@ -1,10 +1,12 @@
 
 # Creating modules
 
-We can not use the (layer)[https://zio.dev/docs/howto/howto_use_layers] dependency mechanism of Zio
+We can not use the [layer](https://zio.dev/docs/howto/howto_use_layers) dependency mechanism of Zio
 
 ```scala
 package com.my.module
+
+import zio.se.ZIOFacade
 
 class MyModule[F <: ZIOFacade & Singleton](val zio: F) {
     // ^ The Singleton is needed to help the compiler
