@@ -16,4 +16,16 @@ object ActualZio extends ZIOFacade {
     def [A, B] (z1: ZIO[Any, Nothing, A]).flatMap(f: A => ZIO[Any, Nothing, B]): ZIO[Any, Nothing, B] =
       z1.flatMap(f)
   }
+
+  type Ref[A] = zio.Ref[A]
+
+  object Ref extends Ref_Object {
+    def make[A](a: A) = zio.Ref.make(a)
+    
+    def [A] (ref: Ref[A]).set(a: A): UIO[Unit] =
+      ref.set(a)
+
+    def [A] (ref: Ref[A]).get: UIO[A] =
+      ref.get
+  }
 }

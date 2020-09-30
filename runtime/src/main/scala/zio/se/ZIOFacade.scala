@@ -9,6 +9,8 @@ trait ZIOFacade { self =>
   val ZIO: ZIO_Object
   
   trait ZIO_Object {
+    def unit: ZIO[Any, Nothing, Unit] = succeed(())
+
     def succeed[A](a: A): ZIO[Any, Nothing, A]
 
     def [A] (z1: ZIO[Any, Nothing, A]).race(z2: ZIO[Any, Nothing, A]): ZIO[Any, Nothing, A]
@@ -22,5 +24,16 @@ trait ZIOFacade { self =>
     inline def succeed[A](a: A): UIO[A] =
       ZIO.succeed(a)
   }
-}
 
+  type Ref[A]
+
+  val Ref: Ref_Object
+
+  trait Ref_Object {
+    def make[A](a: A): UIO[Ref[A]]
+
+    def [A] (ref: Ref[A]).set(a: A): UIO[Unit]
+
+    def [A] (ref: Ref[A]).get: UIO[A]
+  }
+}

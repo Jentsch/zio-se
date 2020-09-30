@@ -17,7 +17,7 @@ class ZioSeTest {
 
 
   @Test def t1(): Unit = {
-    val result = run(ZioSt)
+    val result = run(ZioSe)
     
     assertEquals(result.toSet, Set(1, 2, 4))
   }

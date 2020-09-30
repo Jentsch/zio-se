@@ -1,6 +1,6 @@
 package zio.se
 
-object ZioSt extends ZIOFacade {
+object ZioSe extends ZIOFacade {
   
   type ZIO[-R, +E, +A] = List[A]
 
@@ -15,5 +15,17 @@ object ZioSt extends ZIOFacade {
 
     def [A, B] (z1: ZIO[Any, Nothing, A]).flatMap(f: A => ZIO[Any, Nothing, B]): ZIO[Any, Nothing, B] =
       z1.flatMap(f)
+  }
+
+  type Ref[A] = java.util.concurrent.atomic.AtomicReference[A]
+
+  object Ref extends Ref_Object {
+    def make[A](a: A) = (new java.util.concurrent.atomic.AtomicReference[A](a)) :: Nil
+    
+    def [A] (ref: Ref[A]).set(a: A): UIO[Unit] =
+      UIO.succeed(ref.set(a))
+
+    def [A] (ref: Ref[A]).get: UIO[A] =
+      UIO.succeed(ref.get)
   }
 }

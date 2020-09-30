@@ -6,7 +6,6 @@ import scala.annotation.tailrec
 
 import org.openjdk.jmh.annotations._
 
-
 /**
  * Modified copy of https://github.com/zio/zio/blob/master/benchmarks/src/main/scala/zio/IOMapBenchmark.scala
  */
@@ -32,21 +31,21 @@ class IOMapBenchmark {
     runtime.unsafeRun(sumTo(IO.effectTotal(0), depth))
   }
 
-
   @Benchmark
   def zioFacadeMap(): BigInt = zioFaMap(zio.IOBenchmarks)
 
-
-  private[this] def zioFaMap(runtime: Runtime[Any]): BigInt = {
+  private[this] def zioFaMap(runtime: Runtime[Any]): BigInt =
     runtime.unsafeRun(myMap(zio.se.ActualZio))
-  }
 
   def myMap(zio: se.ZIOFacade): zio.ZIO[Any, Nothing, BigInt] = {
     import zio._
     import zio.ZIO._
 
     @tailrec
-    def sumTo(t: zio.ZIO[Any, Nothing, BigInt], n: Int): zio.ZIO[Any, Nothing, BigInt] =
+    def sumTo(
+      t: zio.ZIO[Any, Nothing, BigInt],
+      n: Int
+    ): zio.ZIO[Any, Nothing, BigInt] =
       if (n <= 1) t
       else sumTo(t.map(_ + n), n - 1)
 
