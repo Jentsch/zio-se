@@ -1,0 +1,17 @@
+name: test
+
+on: push
+
+jobs:
+  test:
+    # Set the type of machine to run on
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v2
+
+      - name: SBT test
+        uses: lokkju/github-action-sbt@master
+        env:
+          JAVA_VERSIONS: 11
